@@ -181,27 +181,12 @@ public class EntityVisitaGuidata {
 		this.guida=guida;
 		
 	}
-
-	 public static DBVisitaGuidata TrovaVisita(int idVisita) {
-			
-		String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita="+idVisita+"';");
-			
-		DBVisitaGuidata visita;
-			
-		try {
-			ResultSet rs = DBConnectionManager.selectQuery(query);
-				
-			if(rs.next()) {
-					
-				visita = new DBVisitaGuidata(idVisita);
-					
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-				
-			}
-			
+// funzione per la ricerca di una visita guidata e return dell'oggetto EntityVisitaGuidata
+	 public static EntityVisitaGuidata TrovaVisitaGuidata(int idVisita) {
+		DBVisitaGuidata dbVisita = DBVisitaGuidata.TrovaVisita(idVisita);
+		
+		EntityVisitaGuidata visita = new EntityVisitaGuidata(dbVisita);
+		
 		return visita;
 	}
 	    
