@@ -321,7 +321,7 @@ public void caricaPrenotazioniVisitaDaDB() {
 			
 			return ret;	// ret = 0, non ci sono stati errori
 		}
-
+// funzione che cerca nel db una visita guidata tramite la chiave e restituisce l'oggetto DBVisitaGuidata
 		public static DBVisitaGuidata TrovaVisita(int idVisita) {
 			
 			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita="+idVisita+"';");
