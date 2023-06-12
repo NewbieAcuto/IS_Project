@@ -182,6 +182,29 @@ public class EntityVisitaGuidata {
 		
 	}
 
+	 public static DBVisitaGuidata TrovaVisita(int idVisita) {
+			
+		String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita="+idVisita+"';");
+			
+		DBVisitaGuidata visita;
+			
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+				
+			if(rs.next()) {
+					
+				visita = new DBVisitaGuidata(idVisita);
+					
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+				
+			}
+			
+		return visita;
+	}
+	    
 	public int getIdVisita() {
 		return idVisita;
 	}
