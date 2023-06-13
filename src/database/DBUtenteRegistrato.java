@@ -104,7 +104,7 @@ public class DBUtenteRegistrato {
 			
 			int ret = 0;
 			
-			String query = "INSERT INTO UTENTIREGISTRATI(Email, Username, Nome, Cognome, Password) VALUES ( \'"+this.nome+"\',"+"\'"+this.username+"\','"+this.nome+"\','"+this.cognome+"\','"+this.password+"')"; 
+			String query = "INSERT INTO UTENTIREGISTRATI(Email, Username, Nome, Cognome, Password) VALUES ( \'"+this.email+"\',"+"\'"+this.username+"\','"+this.nome+"\','"+this.cognome+"\','"+this.password+"')"; 
 			// System.out.println(query);
 			try {
 				ret = DBConnectionManager.updateQuery(query);

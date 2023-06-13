@@ -71,11 +71,11 @@ public class EntityUtenteRegistrato {
 		utente.setPassword(this.password);
 		utente.setUsername(this.username);
 		
-		ArrayList<DBPrenotazione> prenotazioni=new ArrayList<DBPrenotazione>();
+		ArrayList<DBPrenotazione> prenotazioni=new ArrayList<DBPrenotazione>(); 
 		
 		for(int k=0; k<this.getPrenotazioni().size(); k++) {
 			
-			DBPrenotazione prenotazione=new DBPrenotazione(this.getPrenotazioni().get(k));
+			DBPrenotazione prenotazione=new DBPrenotazione(this.getPrenotazioni().get(k)); 
 			prenotazioni.add(prenotazione);
 			
 		}

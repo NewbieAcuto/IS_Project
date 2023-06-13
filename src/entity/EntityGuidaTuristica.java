@@ -72,7 +72,7 @@ public class EntityGuidaTuristica {
 		this.visita = visita;
 	}
 
-	public int scriviSuDB(String cognome) {
+	public int scriviSuDB() {
 		
 		DBGuidaTuristica guida=new DBGuidaTuristica();
 		

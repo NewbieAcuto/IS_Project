@@ -181,7 +181,68 @@ public class EntityVisitaGuidata {
 		this.guida=guida;
 		
 	}
+// funzione per la ricerca di una visita guidata e return dell'oggetto EntityVisitaGuidata
+	 public static EntityVisitaGuidata TrovaVisitaGuidata(int idVisita) {
+		DBVisitaGuidata dbVisita = DBVisitaGuidata.TrovaVisita(idVisita);
+		
+		EntityVisitaGuidata visita = new EntityVisitaGuidata(dbVisita);
+		
+		return visita;
+	}
 
+//Funzione che restituisce una stampa delle visite guidate presenti nel sistema
+	public static int VisualizzaVisiteGuidate() {
+		int ret = 0;
+		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		
+		visite = DBVisitaGuidata.VisualizzaVisite();
+		
+		for(int i = 0; i < visite.size(); i++) {
+			EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+			
+			visitaEntity.toString();
+			System.out.println("\n");
+			ret = 1;
+		}
+		return ret;
+	}
+// Funzione per effettuare la modifica di una visita guidata
+	public int ModificaSuDB() {
+		
+		DBVisitaGuidata visita=new DBVisitaGuidata();
+		
+		visita.setIdVisita(this.idVisita);
+		visita.setDescrizione(this.descrizione);
+		visita.setCitta(this.citta);
+		visita.setMaxPartecipanti(this.maxPartecipanti);
+		visita.setPrezzoBase(this.prezzoBase);
+		
+		DBOffertaSpeciale offerta=new DBOffertaSpeciale(this.offerta);
+		visita.setOfferta(offerta);
+		
+		DBSocieta societa=new DBSocieta(this.societa);
+		visita.setSocieta(societa);
+		
+		DBGuidaTuristica guida=new DBGuidaTuristica(this.guida);
+		visita.setGuida(guida);
+		
+		ArrayList<DBPrenotazione> prenotazioni=new ArrayList<DBPrenotazione>();
+		
+		for(int k=0; k<this.getPrenotazioni().size(); k++) {
+			
+			DBPrenotazione prenotazione=new DBPrenotazione(this.getPrenotazioni().get(k));
+			prenotazioni.add(prenotazione);
+			
+		}
+		
+		visita.setPrenotazioni(prenotazioni);
+		
+		int i=visita.ModificaInDB();
+		return i;
+		
+	}
+
+	
 	public int getIdVisita() {
 		return idVisita;
 	}
@@ -277,12 +338,13 @@ public class EntityVisitaGuidata {
 	public void setGuida(EntityGuidaTuristica guida) {
 		this.guida = guida;
 	}
+	
 	@Override
 	public String toString() {
-		return "EntityVisitaGuidata [idVisita=" + idVisita + ", nome=" + nome + ", descrizione=" + descrizione
-				+ ", citta=" + citta + ", maxPartecipanti=" + maxPartecipanti + ", prezzoBase=" + prezzoBase
-				+ ", offerta=" + offerta + ", prenotazioni=" + prenotazioni + ", opzioni=" + opzioni + ", societa="
-				+ societa + ", guida=" + guida + "]";
+		return "EntityVisitaGuidata [idVisita=" + this.idVisita + ", nome=" + this.nome + ", descrizione=" + this.descrizione
+				+ ", citta=" + this.citta + ", maxPartecipanti=" + this.maxPartecipanti + ", prezzoBase=" + this.prezzoBase
+				+ ", offerta=" + this.offerta + ", prenotazioni=" + this.prenotazioni + ", societa="
+				+ this.societa.getNome() + ", guida=" + this.guida.getNome() + ", opzione="+this.opzioni.toString()+", ";
 	}
 	
 }

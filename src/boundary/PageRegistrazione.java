@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import control.*;
 
 public class PageRegistrazione extends JFrame {
 
@@ -52,17 +54,17 @@ public class PageRegistrazione extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblEmail = new JLabel("Email");
+		JLabel lblEmail = new JLabel("Email*");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setBounds(29, 101, 199, 20);
 		contentPane.add(lblEmail);
 		
-		JLabel lblUsername = new JLabel("Username");
+		JLabel lblUsername = new JLabel("Username*");
 		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername.setBounds(256, 22, 86, 14);
 		contentPane.add(lblUsername);
 		
-		JLabel lblPassword = new JLabel("Password");
+		JLabel lblPassword = new JLabel("Password*");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setBounds(256, 104, 86, 14);
 		contentPane.add(lblPassword);
@@ -105,7 +107,22 @@ public class PageRegistrazione extends JFrame {
 		JButton btnRegistrazione = new JButton("FATTO!");
 		btnRegistrazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+						// non scriviamo 1
+						// scriviamo 0
+				if(!(textEmail.getText().equals("") || textUsername.getText().equals("") || textPassword.getText().equals(""))) {
+					 if(Agenzia.aggiungiUtenteRegistrato(textEmail.getText(),textUsername.getText(),textNome.getText(),textCognome.getText(),textPassword.getText()) == -1) 
+					 {
+						 JOptionPane.showMessageDialog(null,"Email o Username già utlizzato");
+					 }else
+					 {
+						 JOptionPane.showMessageDialog(null,"Email registrata!");
+						 dispose();
+					 }
+				}
+				else 
+				{
+				JOptionPane.showMessageDialog(null,"Non hai compilato i campi Email, Username,Password");
+				}
 			}
 		});
 		btnRegistrazione.setBounds(335, 214, 89, 23);
