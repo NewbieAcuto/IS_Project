@@ -206,6 +206,40 @@ public class EntityVisitaGuidata {
 		}
 		return ret;
 	}
+
+//Funzione che restituisce una stampa delle visite guidate presenti nel sistema per citta inserita
+	public static int VisualizzaVisiteGuidate(String citta) {
+		int ret = 0;
+		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		
+		visite = DBVisitaGuidata.VisualizzaVisite(citta);
+		
+		for(int i = 0; i < visite.size(); i++) {
+			EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+			
+			visitaEntity.toString();
+			System.out.println("\n");
+			ret = 1;
+		}
+		return ret;
+	}
+	
+	//Funzione che restituisce una stampa delle visite guidate presenti nel sistema per citta e durata inserita
+		public static int VisualizzaVisiteGuidate(String citta, int durata) {
+			int ret = 0;
+			ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+			
+			visite = DBVisitaGuidata.VisualizzaVisite(citta, durata);
+			
+			for(int i = 0; i < visite.size(); i++) {
+				EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+				
+				visitaEntity.toString();
+				System.out.println("\n");
+				ret = 1;
+			}
+			return ret;
+		}
 // Funzione per effettuare la modifica di una visita guidata
 	public int ModificaSuDB() {
 		
