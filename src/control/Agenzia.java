@@ -12,6 +12,34 @@ public class Agenzia {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public static void AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
+		EntityVisitaGuidata visita = new EntityVisitaGuidata();
+		visita.setIdVisita(idVisita);
+		visita.setNome(nome);
+		visita.setDescrizione(descrizione);
+		visita.setCitta(citta);
+		visita.setMaxPartecipanti(maxPartecipanti);
+		visita.setPrezzoBase(prezzoBase);
+		
+		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome);
+		visita.setGuida(guida);
+		
+		EntitySocieta societa = new EntitySocieta(societa_Nome);
+		visita.setSocieta(societa);
+		
+		EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta);
+		visita.setOfferta(offerta);
+		
+		int ret = visita.ScriviSuDB();
+		
+		if (ret != -1) {
+	        System.out.println("Visita guidata inserita con successo. ID: " + idVisita);
+	    } else {
+	        System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
+	    }
+		
+	}
+
 	public int aggiungiOpzione(int id, String desc, int dur, String mez, double magp, int idVisita) {
 		
 		EntityOpzione opzione=new EntityOpzione();
@@ -113,6 +141,35 @@ public class Agenzia {
 		
 		int ret=utente.ScriviSuDB();
 		return ret;
+		
+	}
+
+	// Funione di MOdifica di una visita, l'utente prima dell'inserimento dei dati deve ricevere una stampa delle visite, società, guide, 
+	public static void ModificaVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
+		EntityVisitaGuidata visita = new EntityVisitaGuidata();
+		visita.setIdVisita(idVisita);
+		visita.setNome(nome);
+		visita.setDescrizione(descrizione);
+		visita.setCitta(citta);
+		visita.setMaxPartecipanti(maxPartecipanti);
+		visita.setPrezzoBase(prezzoBase);
+		
+		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome);
+		visita.setGuida(guida);
+		
+		EntitySocieta societa = new EntitySocieta(societa_Nome);
+		visita.setSocieta(societa);
+		
+		EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta);
+		visita.setOfferta(offerta);
+		
+		int ret = visita.ModificaSuDB();
+		
+		if (ret != -1) {
+	        System.out.println("Visita guidata modificata con successo. ID: " + idVisita);
+	    } else {
+	        System.out.println("Si è verificato un errore durante la modifica della visita guidata.");
+	    }
 		
 	}
 }
