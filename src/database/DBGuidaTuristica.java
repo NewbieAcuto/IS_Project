@@ -182,7 +182,23 @@ public class DBGuidaTuristica {
 		return guideDisponibili;
 	}
 
-	
+	public void modificaDisponibilita() {
+		
+		String query = new String();
+		if(this.getDisponibile()) {
+			query = new String ("UPDATE GUIDETURISTICHE SET Disponibile ='"+0+"';");
+		}
+		else {
+			query = new String ("UPDATE GUIDETURISTICHE SET Disponibile ='"+1+"';");
+
+		}
+		
+		try {
+			DBConnectionManager.selectQuery(query);
+		} catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public String getCognome() {
 		return cognome;
