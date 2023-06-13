@@ -215,4 +215,41 @@ public class Agenzia {
 		return 0;
 
 	}
+// Funzione per permettere la comunicazione con l'amministratore tramite il servizio mail
+	public static void InviaEmail( String oggetto, String testo) {
+        // Configurazione delle proprietà per la sessione di posta
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.office365.com"); 
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true"); 
+
+        // Credenziali di accesso all'account Gmail usato per comunicare con l'amministratore
+        final String username = "dinofedericoii@outlook.com";
+        final String password = "unodue3quattro";
+
+        // Creazione dell'oggetto Session con autenticazione
+        Session session = Session.getInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Creazione del messaggio email
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username)); // Indirizzo email del mittente
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("luiigcaretti@gmail.com")); // Indirizzo email del destinatario
+            message.setSubject(oggetto);
+            message.setText(testo);
+
+            // Invio dell'email
+            Transport.send(message);
+
+            System.out.println("Email inviata con successo!");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+	
 }
