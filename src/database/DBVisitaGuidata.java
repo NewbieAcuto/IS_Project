@@ -303,11 +303,12 @@ public void caricaPrenotazioniVisitaDaDB() {
 	        
 	    }
 	    
-	    public int ModificaInDB(int idVisita) {
+// Funzione di modifica in DB che verrà richiamata dal modulo ModificaVisitaGuidata nella Entity  
+	    public int ModificaInDB() {
 			
 			int ret = 0;
 			
-			String query = new String("UPDATE VISITEGUIDATE ********* WHERE IdVisita ='"+idVisita+"';");
+			String query = new String("UPDATE VISITEGUIDATE(IdVisita, Nome, Descrizione, Citta, MaxPartecipanti, PrezzoBase, Societa_Nome, GuideTuristiche_Cognome, Offerta) VALUES (\'"+this.idVisita+"\',"+"\'"+this.nome+"\','"+this.descrizione+"\','"+this.citta+"\','"+this.maxPartecipanti+"\','"+this.prezzoBase+"\','"+this.societa.getNome()+"\','"+this.guida.getCognome()+"\','"+this.offerta.getIdOfferta()+"')  WHERE IdVisita ='"+this.idVisita+"';");
 			// System.out.println(query);
 			try {
 				ret = DBConnectionManager.updateQuery(query);
@@ -321,6 +322,7 @@ public void caricaPrenotazioniVisitaDaDB() {
 			
 			return ret;	// ret = 0, non ci sono stati errori
 		}
+	    
 // funzione che cerca nel db una visita guidata tramite la chiave e restituisce l'oggetto DBVisitaGuidata
 		public static DBVisitaGuidata TrovaVisita(int idVisita) {
 			
@@ -344,7 +346,31 @@ public void caricaPrenotazioniVisitaDaDB() {
 			
 			return visita;
 		}
-
+// Funzione che effettua una query su VISITEGUIDATE e ritorna un ArrayList di DBVisitaGuidata
+	 public static ArrayList<DBVisitaGuidata> VisualizzaVisite() {
+			
+			
+			ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+			String query = new String("SELECT * FROM VISITEGUIDATE;");
+			
+			try {
+				ResultSet rs = DBConnectionManager.selectQuery(query);
+			
+				while(rs.next()) {
+					
+					DBVisitaGuidata visita = new DBVisitaGuidata(rs.getInt("IdVisita"));
+				
+					visite.add(visita);
+					
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return visite;
+		}
 	
 	public int getIdVisita() {
 		return idVisita;
