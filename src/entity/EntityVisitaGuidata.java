@@ -338,12 +338,13 @@ public class EntityVisitaGuidata {
 	public void setGuida(EntityGuidaTuristica guida) {
 		this.guida = guida;
 	}
+	
 	@Override
 	public String toString() {
-		return "EntityVisitaGuidata [idVisita=" + idVisita + ", nome=" + nome + ", descrizione=" + descrizione
-				+ ", citta=" + citta + ", maxPartecipanti=" + maxPartecipanti + ", prezzoBase=" + prezzoBase
-				+ ", offerta=" + offerta + ", prenotazioni=" + prenotazioni + ", opzioni=" + opzioni + ", societa="
-				+ societa + ", guida=" + guida + "]";
+		return "EntityVisitaGuidata [idVisita=" + this.idVisita + ", nome=" + this.nome + ", descrizione=" + this.descrizione
+				+ ", citta=" + this.citta + ", maxPartecipanti=" + this.maxPartecipanti + ", prezzoBase=" + this.prezzoBase
+				+ ", offerta=" + this.offerta + ", prenotazioni=" + this.prenotazioni + ", opzioni=" + this.opzioni + ", societa="
+				+ this.societa + ", guida=" + this.guida + "]";
 	}
 	
 }
