@@ -371,7 +371,55 @@ public void caricaPrenotazioniVisitaDaDB() {
 			
 			return visite;
 		}
-	
+
+	 public static ArrayList<DBVisitaGuidata> VisualizzaVisite(String citta) {
+			
+			
+			ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+			String query = new String("SELECT * FROM VISITEGUIDATE WHERE Citta ='"+citta+"';");
+			
+			try {
+				ResultSet rs = DBConnectionManager.selectQuery(query);
+			
+				while(rs.next()) {
+					
+					DBVisitaGuidata visita = new DBVisitaGuidata(rs.getInt("IdVisita"));
+				
+					visite.add(visita);
+					
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return visite;
+		}
+ 
+    public static ArrayList<DBVisitaGuidata> VisualizzaVisite(String citta, int durata ) {
+		
+		
+		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		String query = new String("SELECT * FROM VISITEGUIDATE VG RIGHT JOIN OPZIONI O ON VG.IdVisita = O.VisiteGuida_IdVisita WHERE VG.Citta ='"+citta+"' AND O.Durata ='"+durata+"';");
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+		
+			while(rs.next()) {
+				
+				DBVisitaGuidata visita = new DBVisitaGuidata(rs.getInt("IdVisita"));
+			
+				visite.add(visita);
+				
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return visite;
+	}
 	public int getIdVisita() {
 		return idVisita;
 	}
