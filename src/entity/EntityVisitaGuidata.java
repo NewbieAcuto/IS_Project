@@ -189,7 +189,60 @@ public class EntityVisitaGuidata {
 		
 		return visita;
 	}
-	    
+
+//Funzione che restituisce una stampa delle visite guidate presenti nel sistema
+	public static int VisualizzaVisiteGuidate() {
+		int ret = 0;
+		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		
+		visite = DBVisitaGuidata.VisualizzaVisite();
+		
+		for(int i = 0; i < visite.size(); i++) {
+			EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+			
+			visitaEntity.toString();
+			System.out.println("\n");
+			ret = 1;
+		}
+		return ret;
+	}
+// Funzione per effettuare la modifica di una visita guidata
+	public int ModificaSuDB() {
+		
+		DBVisitaGuidata visita=new DBVisitaGuidata();
+		
+		visita.setIdVisita(this.idVisita);
+		visita.setDescrizione(this.descrizione);
+		visita.setCitta(this.citta);
+		visita.setMaxPartecipanti(this.maxPartecipanti);
+		visita.setPrezzoBase(this.prezzoBase);
+		
+		DBOffertaSpeciale offerta=new DBOffertaSpeciale(this.offerta);
+		visita.setOfferta(offerta);
+		
+		DBSocieta societa=new DBSocieta(this.societa);
+		visita.setSocieta(societa);
+		
+		DBGuidaTuristica guida=new DBGuidaTuristica(this.guida);
+		visita.setGuida(guida);
+		
+		ArrayList<DBPrenotazione> prenotazioni=new ArrayList<DBPrenotazione>();
+		
+		for(int k=0; k<this.getPrenotazioni().size(); k++) {
+			
+			DBPrenotazione prenotazione=new DBPrenotazione(this.getPrenotazioni().get(k));
+			prenotazioni.add(prenotazione);
+			
+		}
+		
+		visita.setPrenotazioni(prenotazioni);
+		
+		int i=visita.ModificaInDB();
+		return i;
+		
+	}
+
+	
 	public int getIdVisita() {
 		return idVisita;
 	}
