@@ -136,6 +136,31 @@ public class DBSocieta{
         
     }
     
+    // Funzione per visualizzare le società presenti nel DB, ritorna un ArrayList di DBSocieta 
+    public static ArrayList<DBSocieta> VisualizzaSocieta() {
+		
+		
+		ArrayList<DBSocieta> societa = new ArrayList<DBSocieta>();
+		String query = new String("SELECT * FROM SOCIETA;");
+		
+		try {
+			ResultSet rs = DBConnectionManager.selectQuery(query);
+		
+			while(rs.next()) {
+				
+				DBSocieta s = new DBSocieta(rs.getString("Nome"));
+			
+				societa.add(s);
+				
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return societa;
+	}
     
     
 	public String getNome() {
