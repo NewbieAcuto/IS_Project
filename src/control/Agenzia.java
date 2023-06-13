@@ -12,7 +12,7 @@ public class Agenzia {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
+	public static int AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
 		EntityVisitaGuidata visita = new EntityVisitaGuidata();
 		visita.setIdVisita(idVisita);
 		visita.setNome(nome);
@@ -33,11 +33,11 @@ public class Agenzia {
 		int ret = visita.ScriviSuDB();
 		
 		if (ret != -1) {
-	        System.out.println("Visita guidata inserita con successo. ID: " + idVisita);
-	    } else {
-	        System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
-	    }
-		
+	        	System.out.println("Visita guidata inserita con successo. ID: " + idVisita);
+	    	} else {
+	        	System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
+	    	}
+		return ret;
 	}
 
 	public int aggiungiOpzione(int id, String desc, int dur, String mez, double magp, int idVisita) {
@@ -87,23 +87,7 @@ public class Agenzia {
 		return ret;
 		
 	}
-	
-	public static int AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int offerta, String guidaTuristica_Cognome) {
-		EntityVisitaGuidata visita = new EntityVisitaGuidata();
-		visita.setIdVisita(idVisita);
-		visita.setNome(nome);
-		visita.setDescrizione(descrizione);
-		visita.setCitta(citta);
-		visita.setMaxPartecipanti(maxPartecipanti);
-		visita.setPrezzoBase(prezzoBase);
-		
-		
-		if(EntityGuidaTuristica.TrovaGuideDisponibili() == 0) {
-			System.out.println("Non ci sono guide disponibili da assegnare");
-		};
-		return 1;
-		
-	}
+
 	
 	public int aggiungiPrenotazione(String eml, int idv, Date dat, Time or, double pt, int ido) {
 		
