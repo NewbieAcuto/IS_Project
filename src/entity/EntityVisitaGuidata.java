@@ -343,8 +343,8 @@ public class EntityVisitaGuidata {
 	public String toString() {
 		return "EntityVisitaGuidata [idVisita=" + this.idVisita + ", nome=" + this.nome + ", descrizione=" + this.descrizione
 				+ ", citta=" + this.citta + ", maxPartecipanti=" + this.maxPartecipanti + ", prezzoBase=" + this.prezzoBase
-				+ ", offerta=" + this.offerta + ", prenotazioni=" + this.prenotazioni + ", opzioni=" + this.opzioni + ", societa="
-				+ this.societa + ", guida=" + this.guida + "]";
+				+ ", offerta=" + this.offerta + ", prenotazioni=" + this.prenotazioni + ", societa="
+				+ this.societa.getNome() + ", guida=" + this.guida.getNome() + ", opzione="+this.opzioni.toString()+", ";
 	}
 	
 }
