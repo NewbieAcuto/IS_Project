@@ -89,13 +89,12 @@ public class Agenzia {
 	}
 
 	
-	public int aggiungiPrenotazione(String eml, int idv, Date dat, Time or, double pt, int ido) {
+	public int aggiungiPrenotazione(String eml, int idv, Date dat, Time or, int ido) {
 		
 		EntityPrenotazione prenotazione=new EntityPrenotazione();
 		
 		prenotazione.setData(dat);
 		prenotazione.setOra(or);
-		prenotazione.setPrezzoTotale(pt);
 		
 		EntityUtenteRegistrato utente=new EntityUtenteRegistrato(eml);
 		utente.addPrenotazione(prenotazione);
@@ -105,8 +104,15 @@ public class Agenzia {
 		visita.addPrenotazione(prenotazione);
 		prenotazione.setVisita(visita);
 		
+		double prezzoBase=visita.getPrezzoBase();
+		double sconto=controllaSconto(idv);
+		
 		EntityOpzione opzione=new EntityOpzione(ido);
 		prenotazione.setOpzione(opzione);
+		
+		double maggiorazione=opzione.getMaggiorazionePrezzo();
+		double prezzoTotale=prezzoBase-(prezzoBase*sconto)/100+maggiorazione;
+		prenotazione.setPrezzoTotale(prezzoTotale);
 		
 		int ret=prenotazione.ScriviSuDB();
 		return ret;
@@ -155,5 +161,58 @@ public class Agenzia {
 	        System.out.println("Si è verificato un errore durante la modifica della visita guidata.");
 	    }
 		
+	}
+	
+	public int aggiungiGuidaTuristica(String c, String n, int et, String ses, String lin, int annoa){
+
+		EntityGuidaTuristica guida=new EntityGuidaTuristica();
+
+		guida.setCognome(c);
+		guida.setNome(n);
+		guida.setEta(et);
+		guida.setSesso(ses);
+		guida.setLingue(lin);
+		guida.setAnnoAbilitazione(annoa);
+		guida.setDisponibile(true);
+
+		int ret=utente.scriviSuDB();
+		return ret;
+
+	}
+
+	public int Login(String eml, String pass){
+
+		EntityUtenteRegistrato utente=new EntityUtenteRegistrato(eml);
+
+		if(pass==utente.getPassword())
+			return 0;
+
+		else
+			return -1;
+
+	}
+
+	public int controllaOpzione(int idv, int ido){
+
+		EntityOpzione opzione=new EntityOpzione(ido);
+
+		if(idv==opzione.getVisita().getIdVisita())
+			return 0;
+
+		else
+			return -1;
+	}
+
+	public double controllaSconto(int idv){
+
+		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
+
+		if(visita.getOfferta().getInizio()<LocalDateTime.now() && visita.getOfferta().getFine()>LocalDateTime.now()){
+			double sconto=visita.getOfferta().getPercentualeSconto();
+			return sconto;
+		}
+
+		return 0;
+
 	}
 }
