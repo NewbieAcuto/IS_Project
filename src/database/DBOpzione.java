@@ -18,13 +18,13 @@ public class DBOpzione {
 		
 		public DBOpzione() {
 			super();
-			this.visita = new DBVisitaGuidata();
+			this.prenotazioni = new ArrayList<DBPrenotazioni>();
 		}
 		
 		
 		public DBOpzione(int idOpzione) {
 			this.idOpzione = idOpzione;
-			this.visita = new DBVisitaGuidata();
+			this.prenotazioni = new ArrayList<DBPrenotazioni>();
 			
 			caricaDaDB();
 		}
@@ -74,7 +74,7 @@ public class DBOpzione {
 		public void caricaVisitaOpzioneDaDB() {
 			
 			
-			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.visita.getIdVisita()+"';" );
+			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='(SELECT VisiteGuida_IdVisita FROM OPZIONI WHERE IdOpzione ='"+this.idOpzione+"')';" );
 			//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 			try {
