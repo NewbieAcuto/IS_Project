@@ -58,19 +58,6 @@ public class EntityGuidaTuristica {
 		this.visita=visita;
 		
 	}
-	
-	public EntityGuidaTuristica(String cognome, String nome, int eta, String sesso, String lingue, int annoAbilitazione, boolean disponibile,
-			EntityVisitaGuidata visita) {
-		super();
-		this.cognome = cognome;
-		this.nome = nome;
-		this.eta = eta;
-		this.sesso = sesso;
-		this.lingue = lingue;
-		this.annoAbilitazione = annoAbilitazione;
-		this.disponibile = disponibile;
-		this.visita = visita;
-	}
 
 	public int scriviSuDB() {
 		
