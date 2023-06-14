@@ -93,20 +93,17 @@ public class EntitySocieta {
 	}
 
 	//Funzione di stampa delle societa presenti nel sistema
-	public static int VisualizzaSocieta() {
-		int ret = 0;			
+	public static ArrayList<EntitySocieta> VisualizzaSocieta() {		
 		ArrayList<DBSocieta> societa = new ArrayList<DBSocieta>();
-			
+		ArrayList<EntitySocieta> EntitySocieta = new ArrayList<EntitySocieta>();
 		societa = DBSocieta.VisualizzaSocieta();
 			
 		for(int i = 0; i < societa.size(); i++) {
 			EntitySocieta societaEntity = new EntitySocieta(societa.get(i));
-				
-			societaEntity.toString();
-			System.out.println("\n");
-			ret = 1;
+			
+			EntitySocieta.add(societaEntity);
 		}
-		return ret;
+		return EntitySocieta;
 	}
 
 	
