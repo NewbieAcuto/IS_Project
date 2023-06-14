@@ -203,7 +203,7 @@ public class Agenzia {
 		
 	}
 	
-	public int eliminaVisitaGuidata(int idv){
+	public static int eliminaVisitaGuidata(int idv){
 		
 		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
 		
@@ -216,7 +216,7 @@ public class Agenzia {
 		return ret;
 	}
 	
-	public int aggiungiGuidaTuristica(String c, String n, int et, String ses, String lin, int annoa){
+	public static int aggiungiGuidaTuristica(String c, String n, int et, String ses, String lin, int annoa){
 
 		EntityGuidaTuristica guida=new EntityGuidaTuristica();
 
