@@ -72,7 +72,7 @@ public class DBUtenteRegistrato {
 	public void caricaPrenotazioniUtenteDaDB() {
 		
 		
-		String query = new String("SELECT * FROM PRENOTAZIONI WHERE EmailUtente='"+this.email+"')" );
+		String query = new String("SELECT * FROM PRENOTAZIONI WHERE EmailUtente='"+this.email+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -104,7 +104,7 @@ public class DBUtenteRegistrato {
 			
 			int ret = 0;
 			
-			String query = "INSERT INTO UTENTIREGISTRATI(Email, Username, Nome, Cognome, Password) VALUES ( \'"+this.email+"\',"+"\'"+this.username+"\','"+this.nome+"\','"+this.cognome+"\','"+this.password+"')"; 
+			String query = "INSERT INTO UTENTIREGISTRATI(Email, Username, Nome, Cognome, Password) VALUES ( \'"+this.email+"\',"+"\'"+this.username+"\','"+this.nome+"\','"+this.cognome+"\','"+this.password+"');"; 
 			// System.out.println(query);
 			try {
 				ret = DBConnectionManager.updateQuery(query);
@@ -123,7 +123,7 @@ public class DBUtenteRegistrato {
 		// Funzione per eliminare un'istanza dal database
 	    public int EliminaDalDB() {
 	    	int ret = 0;
-	        String query = new String("DELETE FROM UTENTIREGISTRATI WHERE Email ='"+this.email+"'");
+	        String query = new String("DELETE FROM UTENTIREGISTRATI WHERE Email ='"+this.email+"';");
 	        
 	        try{
 	        	
