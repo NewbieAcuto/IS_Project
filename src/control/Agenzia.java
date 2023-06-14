@@ -192,17 +192,6 @@ public class Agenzia {
 
 	}
 
-	public int controllaOpzione(int idv, int ido){
-
-		EntityOpzione opzione=new EntityOpzione(ido);
-
-		if(idv==opzione.getVisita().getIdVisita())
-			return 1;
-
-		else
-			return 0;
-	}
-
 	public static double controllaSconto(int idv){
 
 		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
