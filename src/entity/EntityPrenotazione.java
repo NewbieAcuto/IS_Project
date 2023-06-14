@@ -111,6 +111,26 @@ public class EntityPrenotazione {
 		this.utente=utente;
 		
 	}
+	
+	public double calcolaPrezzoTotale(){
+		
+		double prezzoBase=this.visita.getPrezzoBase();
+		double maggiorazione=this.opzione.getMaggiorazionePrezzo();
+		double sconto=controllaSconto();
+		
+		double prezzoTotale=prezzoBase-(prezzoBase*sconto)/100+maggiorazione;
+		setPrezzoTotale(prezzoTotale);
+		return prezzoTotale;
+	}
+	
+	public double controllaSconto(){
+	
+		if(this.offerta!=null)
+			return this.offerta.getPercentualeSconto();
+		
+		else
+			return 0;
+	}
 
 	public EntityVisitaGuidata getVisita() {
 		return visita;
