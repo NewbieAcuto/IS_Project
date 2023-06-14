@@ -90,6 +90,13 @@ public class EntityGuidaTuristica {
 		return i;
 		
 	}
+	
+	public void ModificaNelDB(){
+		
+		DBGuidaTuristica guida=new DBGuidaTuristica(this.cognome);
+		
+		guida.ModificaDisponibilita();
+	}
 
 	
 	public static int TrovaGuideDisponibili() {
