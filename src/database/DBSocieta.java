@@ -69,7 +69,7 @@ public class DBSocieta{
 	public void caricaVisiteSocietaDaDB() {
 			
 		// Scrivo la query da inoltrare al DB
-		String query = new String("SELECT * FROM VISITAGUIDATA WHERE Societa_Nome='"+this.nome+"'");
+		String query = new String("SELECT * FROM VISITEGUIDATE WHERE Societa_Nome='"+this.nome+"';");
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG
 			
 		try {
@@ -101,7 +101,7 @@ public class DBSocieta{
 		
 		int ret = 0;
 		
-		String query = "INSERT INTO SOCIETA(Nome, Indirizzo, Telefono, Email) VALUES ( \'"+this.nome+"\',"+"\'"+this.indirizzo+"\','"+this.telefono+"\','"+this.email+"')"; 
+		String query = "INSERT INTO SOCIETA(Nome, Indirizzo, Telefono, Email) VALUES ( \'"+this.nome+"\',"+"\'"+this.indirizzo+"\','"+this.telefono+"\','"+this.email+"');"; 
 		// System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
@@ -119,7 +119,7 @@ public class DBSocieta{
 	// Funzione per eliminare un'istanza dal database
     public int EliminaDalDB() {
     	int ret = 0;
-        String query = new String("DELETE FROM SOCIETA WHERE Nome ='"+this.nome+"'");
+        String query = new String("DELETE FROM SOCIETA WHERE Nome ='"+this.nome+"';");
         
         try{
         	
