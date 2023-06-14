@@ -74,7 +74,7 @@ public class DBOpzione {
 		public void caricaVisitaOpzioneDaDB() {
 			
 			
-			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='(SELECT VisiteGuida_IdVisita FROM OPZIONI WHERE IdOpzione ='"+this.idOpzione+"')';" );
+			String query = new String("SELECT * FROM VISITEGUIDATE LEFT JOIN OPZIONI ON IdVisita = VisiteGuida_IdVisita WHERE IdOpzione ='"+this.idOpzione+"';" );
 			//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 			try {
