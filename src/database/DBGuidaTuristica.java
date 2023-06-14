@@ -75,7 +75,7 @@ public class DBGuidaTuristica {
 	public void caricaVisitaGuidaDaDB() {
 		
 		
-		String query = new String("SELECT * FROM VISITEGUIDATE WHERE GuideTuristiche_Cognome='"+this.cognome+"')" );
+		String query = new String("SELECT * FROM VISITEGUIDATE WHERE GuideTuristiche_Cognome='"+this.cognome+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -114,7 +114,7 @@ public class DBGuidaTuristica {
 		
 		int ret = 0;
 		
-		String query = "INSERT INTO OPZIONI(Cognome, Nome, Eta, Sesso, Lingue, AnnoAbilitazione, Disponibile) VALUES ( \'"+this.cognome+"\',"+"\'"+this.nome+"\','"+this.eta+"\','"+this.lingue+"\','"+this.annoAbilitazione+"\','"+this.disponibile+"')";
+		String query = "INSERT INTO OPZIONI(Cognome, Nome, Eta, Sesso, Lingue, AnnoAbilitazione, Disponibile) VALUES ( \'"+this.cognome+"\',"+"\'"+this.nome+"\','"+this.eta+"\','"+this.lingue+"\','"+this.annoAbilitazione+"\','"+this.disponibile+"');";
 		// System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
@@ -133,7 +133,7 @@ public class DBGuidaTuristica {
 	// Funzione per eliminare un'istanza dal database
     public int EliminaDalDB() {
     	int ret = 0;
-        String query = new String("DELETE FROM GUIDETURISTICHE WHERE Cognome ='"+this.cognome+"'");
+        String query = new String("DELETE FROM GUIDETURISTICHE WHERE Cognome ='"+this.cognome+"';");
         
         try{
         	
