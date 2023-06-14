@@ -207,6 +207,26 @@ public class DBPrenotazione {
         return ret;	// ret = 0, non ci sono stati errori
         
     }
+	
+	public double calcolaPrezzoTotale(){
+		
+		double prezzoBase=this.visita.getPrezzoBase();
+		double maggiorazione=this.opzione.getMaggiorazionePrezzo();
+		double sconto=controllaSconto();
+		
+		double prezzoTotale=prezzoBase-(prezzoBase*sconto)/100+maggiorazione;
+		setPrezzoTotale(prezzoTotale);
+		return prezzoTotale;
+	}
+	
+	public double controllaSconto(){
+	
+		if(this.offerta!=null)
+			return this.offerta.getPercentualeSconto();
+		
+		else
+			return 0;
+	}
     
     
 
