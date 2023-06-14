@@ -203,6 +203,19 @@ public class Agenzia {
 		
 	}
 	
+	public int eliminaVisitaGuidata(int idv){
+		
+		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
+		
+		EntityGuidaTuristica guida=new EntityGuidaTuristica(visita.getGuida().getCognome());
+		
+		guida.aggiornaDisponibilita();
+		guida.ModificaNelDB();
+		
+		int ret=visita.EliminaDalDB();
+		return ret;
+	}
+	
 	public int aggiungiGuidaTuristica(String c, String n, int et, String ses, String lin, int annoa){
 
 		EntityGuidaTuristica guida=new EntityGuidaTuristica();
