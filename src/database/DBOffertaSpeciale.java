@@ -69,7 +69,7 @@ public class DBOffertaSpeciale {
 	public void caricaVisiteOffertaDaDB() {
 		
 		// Scrivo la query da inoltrare al DB
-		String query = new String("SELECT * FROM VISITAGUIDATE WHERE Offerta='"+this.idOfferta+"';");
+		String query = new String("SELECT * FROM VISITEGUIDATE WHERE Offerta='"+this.idOfferta+"';");
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG
 			
 		try {
