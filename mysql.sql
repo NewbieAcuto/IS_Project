@@ -38,8 +38,8 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `mydb`.`OFFERTESPECIALI` (
   `IdOfferta` INT NOT NULL,
   `PercentualeSconto` DOUBLE NOT NULL,
-  `Inizio` DATE NOT NULL,
-  `Fine` DATE NOT NULL,
+  `Inizio` DATE NOT NULL CHECK (Data LIKE 'DD/MM/YYYY'),
+  `Fine` DATE NOT NULL CHECK (Data LIKE 'DD/MM/YYYY'),
   PRIMARY KEY (`IdOfferta`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3
@@ -93,7 +93,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `mydb`.`OPZIONI`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`OPZIONI` (
-  `IdOpzione` INT NOT NULL,
+  `IdOpzione` INT NOT NULL CHECK (IdOpzione > 0),
   `Descrizione` BLOB NULL DEFAULT NULL,
   `Durata` INT NULL DEFAULT NULL,
   `Mezzo` VARCHAR(45) NULL DEFAULT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`UTENTIREGISTRATI` (
   `Username` VARCHAR(20) NOT NULL,
   `Nome` VARCHAR(30) NOT NULL,
   `Cognome` VARCHAR(40) NOT NULL,
-  `Password` VARCHAR(20) NOT NULL,
+  `Password` VARCHAR(20) NOT NULL CHECK (LEN(Password) >= 8),
   PRIMARY KEY (`Email`),
   UNIQUE INDEX `Username_UNIQUE` (`Username` ASC) VISIBLE,
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE)
