@@ -74,7 +74,7 @@ public class DBPrenotazione {
 	public void caricaVisitaPrenotazioneDaDB() {
 			
 			
-		String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.visita.getIdVisita()+"')" );
+		String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.visita.getIdVisita()+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 		try {
@@ -115,7 +115,7 @@ public class DBPrenotazione {
 	public void caricaUtentePrenotazioneDaDB() {
 				
 				
-		String query = new String("SELECT * FROM UTENTIREGISTRATI WHERE Email='"+this.utente.getEmail()+"')" );
+		String query = new String("SELECT * FROM UTENTIREGISTRATI WHERE Email='"+this.utente.getEmail()+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 				
 		try {
@@ -143,7 +143,7 @@ public class DBPrenotazione {
 	public void caricaOpzionePrenotazioneDaDB() {
 		
 		
-		String query = new String("SELECT * FROM OPZIONI WHERE IdOpzione='"+this.opzione.getIdOpzione()+"')" );
+		String query = new String("SELECT * FROM OPZIONI WHERE IdOpzione='"+this.opzione.getIdOpzione()+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -175,7 +175,7 @@ public class DBPrenotazione {
 		
 		int ret = 0;
 		
-		String query = "INSERT INTO PRENOTAZIONI(Data, Ora, PrezzoTotale, Visita, EmailUtente, Opzione_IdOpzione) VALUES ( \'"+this.data+"\',"+"\'"+this.ora+"\','"+this.prezzoTotale+"\','"+this.visita.getIdVisita()+"\','"+this.utente.getEmail()+"\','"+this.opzione.getIdOpzione()+"')";
+		String query = "INSERT INTO PRENOTAZIONI(Data, Ora, PrezzoTotale, Visita, EmailUtente, Opzione_IdOpzione) VALUES ( \'"+this.data+"\',"+"\'"+this.ora+"\','"+this.prezzoTotale+"\','"+this.visita.getIdVisita()+"\','"+this.utente.getEmail()+"\','"+this.opzione.getIdOpzione()+"');";
 		// System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
@@ -194,7 +194,7 @@ public class DBPrenotazione {
 	// Funzione per eliminare un'istanza dal database
     public int EliminaDalDB() {
     	int ret = 0;
-        String query = new String("DELETE FROM PRENOTAZIONI WHERE Visita ='"+this.visita.getIdVisita()+"' AND EmailUtente='"+this.utente.getEmail()+"'");
+        String query = new String("DELETE FROM PRENOTAZIONI WHERE Visita ='"+this.visita.getIdVisita()+"' AND EmailUtente='"+this.utente.getEmail()+"';");
         
         try{
         	
