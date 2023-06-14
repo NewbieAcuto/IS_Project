@@ -113,24 +113,28 @@ public class Agenzia {
 		
 		EntityPrenotazione prenotazione=new EntityPrenotazione();
 		
-		prenotazione.setData(dat);
-		prenotazione.setOra(or);
+		if(controllaOpzione(idv,ido))
+			return 0;
+		else{
+			prenotazione.setData(dat);
+			prenotazione.setOra(or);
 		
-		EntityUtenteRegistrato utente=new EntityUtenteRegistrato(eml);
-		utente.addPrenotazione(prenotazione);
-		prenotazione.setUtente(utente);
+			EntityUtenteRegistrato utente=new EntityUtenteRegistrato(eml);
+			utente.addPrenotazione(prenotazione);
+			prenotazione.setUtente(utente);
 		
-		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
-		visita.addPrenotazione(prenotazione);
-		prenotazione.setVisita(visita);
+			EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
+			visita.addPrenotazione(prenotazione);
+			prenotazione.setVisita(visita);
 		
-		EntityOpzione opzione=new EntityOpzione(ido);
-		prenotazione.setOpzione(opzione);
+			EntityOpzione opzione=new EntityOpzione(ido);
+			prenotazione.setOpzione(opzione);
 		
-		prenotazione.calcolaPrezzoTotale();
+			prenotazione.calcolaPrezzoTotale();
 		
-		int ret=prenotazione.ScriviSuDB();
-		return ret;
+			int ret=prenotazione.ScriviSuDB();
+			return ret;
+		}
 	}
 	
 	public static int aggiungiUtenteRegistrato(String eml, String usern, String n, String c, String pass) {
