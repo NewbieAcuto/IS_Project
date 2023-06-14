@@ -55,21 +55,6 @@ public class EntityPrenotazione {
 		caricaOpzionePrenotazione(prenotazione);
 	}
 	
-	public EntityPrenotazione(EntityVisitaGuidata visita, EntityUtenteRegistrato utente, Date data, Time ora,
-			double prezzoTotale, EntityOpzione opzione) {
-		super();
-		this.visita = visita;
-		this.utente = utente;
-		this.data = data;
-		this.ora = ora;
-		PrezzoTotale = prezzoTotale;
-		this.opzione = opzione;
-		
-		DBPrenotazione prenotazione=new DBPrenotazione(this);
-		prenotazione.SalvaInDB();
-		
-	}
-	
 	public int ScriviSuDB() {
 		
 		DBPrenotazione prenotazione=new DBPrenotazione();
