@@ -40,8 +40,9 @@ public class Agenzia {
 			visita.setSocieta(societa);
 		
 			EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta); 
-
-			visita.setOfferta(offerta); 
+			
+			if(offerta.inizio.isBefore(LocalDate.now) && offerta.fine.isAfter(LocalDate.now))
+			   	visita.setOfferta(offerta);
 
 			int ret = visita.ScriviSuDB(); 
 
@@ -81,18 +82,20 @@ public class Agenzia {
 	}
 
 	public int aggiungiOffertaSpeciale(int id, double percs, Date in, Date fin) {
+		
+	if(fin.isAfter(LocalDate.now)){
 	
-	EntityOffertaSpeciale offerta=new EntityOffertaSpeciale();
+		EntityOffertaSpeciale offerta=new EntityOffertaSpeciale();
 
-	offerta.setIdOfferta(id);
-	offerta.setPercentualeSconto(percs);
-	offerta.setInizio(in);
-	offerta.setFine(fin);
-	
-	
-	int ret=offerta.ScriviSuDB();
-	return ret;
-	
+		offerta.setIdOfferta(id);
+		offerta.setPercentualeSconto(percs);
+		offerta.setInizio(in);
+		offerta.setFine(fin);
+		
+		int ret=offerta.ScriviSuDB();
+		return ret;
+	}
+		else return 0;	
 }
 
 	public static int AggiungiSocieta(String nome, String indirizzo, int telefono, String email) {
@@ -153,7 +156,7 @@ public class Agenzia {
 	}
 
 	// Funione di MOdifica di una visita, l'utente prima dell'inserimento dei dati deve ricevere una stampa delle visite, società, guide, 
-	public static void ModificaVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
+	public static int ModificaVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome, int idof) {
 		EntityVisitaGuidata visita = new EntityVisitaGuidata(); 
 
 		visita.setIdVisita(idVisita); 
@@ -180,7 +183,8 @@ public class Agenzia {
 		
 			EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta); 
 
-			visita.setOfferta(offerta); 
+			if(offerta.inizio.isBefore(LocalDate.now) && offerta.fine.isAfter(LocalDate.now))
+			   	visita.setOfferta(offerta); 
 
 			int ret = visita.ModificaSuDB(); 
 
