@@ -19,17 +19,6 @@ public class EntitySocieta {
 		
 	}
 	
-	public EntitySocieta(String nome, String indirizzo, int telefono, String email, ArrayList<EntityVisitaGuidata> visite) {
-		
-		super();
-		this.nome= nome;
-		this.indirizzo= indirizzo;
-		this.telefono= telefono;
-		this.email= email;
-		this.visite= visite;
-		
-	}
-	
 	public EntitySocieta(String nome){
 		
 		DBSocieta societa=new DBSocieta(nome);
