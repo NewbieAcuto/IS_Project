@@ -53,19 +53,6 @@ public class EntityOpzione {
 		
 	}
 	
-	public EntityOpzione(int idOpzione, String descrizione, int durata, String mezzo, double maggiorazionePrezzo,
-			EntityVisitaGuidata visita, ArrayList<EntityPrenotazione> prenotazioni) {
-		super();
-		this.idOpzione = idOpzione;
-		this.descrizione = descrizione;
-		this.durata = durata;
-		this.mezzo = mezzo;
-		this.maggiorazionePrezzo = maggiorazionePrezzo;
-		this.visita = visita;
-		this.prenotazioni = prenotazioni;
-		
-	}
-	
 	public int scriviSuDB() {
 		
 		DBOpzione opzione=new DBOpzione();
