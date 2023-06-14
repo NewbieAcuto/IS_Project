@@ -191,54 +191,48 @@ public class EntityVisitaGuidata {
 	}
 
 //Funzione che restituisce una stampa delle visite guidate presenti nel sistema
-	public static int VisualizzaVisiteGuidate() {
-		int ret = 0;
-		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+	public static ArrayList<EntityVisitaGuidata> VisualizzaVisiteGuidate() {
 		
+		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		ArrayList<EntityVisitaGuidata> EntityVisite = new ArrayList <EntityVisitaGuidata>();
 		visite = DBVisitaGuidata.VisualizzaVisite();
 		
 		for(int i = 0; i < visite.size(); i++) {
-			EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+			EntityVisitaGuidata EntityVisita = new EntityVisitaGuidata(visite.get(i));
 			
-			visitaEntity.toString();
-			System.out.println("\n");
-			ret = 1;
+			EntityVisite.add(EntityVisita);
 		}
-		return ret;
+		return EntityVisite;
 	}
 
 //Funzione che restituisce una stampa delle visite guidate presenti nel sistema per citta inserita
-	public static int VisualizzaVisiteGuidate(String citta) {
-		int ret = 0;
+	public static ArrayList<EntityVisitaGuidata> VisualizzaVisiteGuidate(String citta) {
+	
 		ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
-		
+		ArrayList<EntityVisitaGuidata> EntityVisite = new ArrayList <EntityVisitaGuidata>();
 		visite = DBVisitaGuidata.VisualizzaVisite(citta);
 		
 		for(int i = 0; i < visite.size(); i++) {
-			EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+			EntityVisitaGuidata EntityVisita = new EntityVisitaGuidata(visite.get(i));
 			
-			visitaEntity.toString();
-			System.out.println("\n");
-			ret = 1;
+			EntityVisite.add(EntityVisita);
 		}
-		return ret;
+		return EntityVisite;
 	}
 	
 	//Funzione che restituisce una stampa delle visite guidate presenti nel sistema per citta e durata inserita
-		public static int VisualizzaVisiteGuidate(String citta, int durata) {
-			int ret = 0;
-			ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+		public static ArrayList<EntityVisitaGuidata> VisualizzaVisiteGuidate(String citta, int durata) {
 			
+			ArrayList<DBVisitaGuidata> visite = new ArrayList<DBVisitaGuidata>();
+			ArrayList<EntityVisitaGuidata> EntityVisite = new ArrayList <EntityVisitaGuidata>();
 			visite = DBVisitaGuidata.VisualizzaVisite(citta, durata);
 			
 			for(int i = 0; i < visite.size(); i++) {
-				EntityVisitaGuidata visitaEntity = new EntityVisitaGuidata(visite.get(i));
+				EntityVisitaGuidata EntityVisita = new EntityVisitaGuidata(visite.get(i));
 				
-				visitaEntity.toString();
-				System.out.println("\n");
-				ret = 1;
+				EntityVisite.add(EntityVisita);
 			}
-			return ret;
+			return EntityVisite;
 		}
 // Funzione per effettuare la modifica di una visita guidata
 	public int ModificaSuDB() {
