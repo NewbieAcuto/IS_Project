@@ -271,6 +271,18 @@ public class EntityVisitaGuidata {
 	}
 
 	
+	// Funzione per effettuare l'eliminazione di una visita guidata
+		public int EliminaSuDB() {
+			
+			DBVisitaGuidata visita=new DBVisitaGuidata();
+			
+			visita.setIdVisita(this.idVisita);
+		
+			int i=visita.EliminaDalDB();
+			return i;
+			
+		}
+	
 	public int getIdVisita() {
 		return idVisita;
 	}
