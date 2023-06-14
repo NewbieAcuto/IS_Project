@@ -48,20 +48,6 @@ public class EntityUtenteRegistrato {
 		caricaPrenotazioniUtente(utente);
 	}
 	
-	
-	
-	public EntityUtenteRegistrato(String email, String username, String nome, String cognome, String password,
-			ArrayList<EntityPrenotazione> prenotazioni) {
-		super();
-		this.email = email;
-		this.username = username;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.password = password;
-		this.prenotazioni = prenotazioni;
-		
-	}
-	
 	public int ScriviSuDB() {
 		
 		DBUtenteRegistrato utente=new DBUtenteRegistrato();
