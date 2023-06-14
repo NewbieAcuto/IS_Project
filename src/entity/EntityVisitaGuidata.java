@@ -85,26 +85,6 @@ public class EntityVisitaGuidata {
 			
 	}
 	
-	
-		
-	public EntityVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti,
-				double prezzoBase, EntityOffertaSpeciale offerta, ArrayList<EntityPrenotazione> prenotazioni,
-				ArrayList<EntityOpzione> opzioni, EntitySocieta societa, EntityGuidaTuristica guida) {
-			super();
-			this.idVisita = idVisita;
-			this.nome = nome;
-			this.descrizione = descrizione;
-			this.citta = citta;
-			this.maxPartecipanti = maxPartecipanti;
-			this.prezzoBase = prezzoBase;
-			this.offerta = offerta;
-			this.prenotazioni = prenotazioni;
-			this.opzioni = opzioni;
-			this.societa = societa;
-			this.guida = guida;
-			
-		}
-	
 	public int ScriviSuDB() {
 		
 		DBVisitaGuidata visita=new DBVisitaGuidata();
