@@ -22,13 +22,11 @@ public class DBGuidaTuristica {
 	
 	public DBGuidaTuristica() {
 		super();
-		this.visita = new DBVisitaGuidata();
 	}
 	
 	
 	public DBGuidaTuristica(String cognome) {
 		this.cognome = cognome;
-		this.visita = new DBVisitaGuidata();
 		
 		caricaDaDB();
 	}
