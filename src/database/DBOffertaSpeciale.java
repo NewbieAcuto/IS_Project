@@ -69,7 +69,7 @@ public class DBOffertaSpeciale {
 	public void caricaVisiteOffertaDaDB() {
 		
 		// Scrivo la query da inoltrare al DB
-		String query = new String("SELECT * FROM VISITAGUIDATA WHERE Offerta='"+this.idOfferta+"'");
+		String query = new String("SELECT * FROM VISITAGUIDATE WHERE Offerta='"+this.idOfferta+"';");
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG
 			
 		try {
@@ -101,7 +101,7 @@ public class DBOffertaSpeciale {
 		
 		int ret = 0;
 		
-		String query = "INSERT INTO OFFERTESPECIALI(IdOfferta, PercentualeSconto, Inizio, Fine) VALUES ( \'"+this.idOfferta+"\',"+"\'"+this.percentualeSconto+"\','"+this.inizio+"\','"+this.fine+"')"; 
+		String query = "INSERT INTO OFFERTESPECIALI(IdOfferta, PercentualeSconto, Inizio, Fine) VALUES ( \'"+this.idOfferta+"\',"+"\'"+this.percentualeSconto+"\','"+this.inizio+"\','"+this.fine+"');"; 
 		// System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
@@ -120,7 +120,7 @@ public class DBOffertaSpeciale {
 	// Funzione per eliminare un'istanza dal database
     public int EliminaDalDB() {
     	int ret = 0;
-        String query = new String("DELETE FROM OFFERTESPECIALI WHERE IdOfferta ='"+this.idOfferta+"'");
+        String query = new String("DELETE FROM OFFERTESPECIALI WHERE IdOfferta ='"+this.idOfferta+"';");
         
         try{
         	
