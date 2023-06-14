@@ -13,34 +13,53 @@ public class Agenzia {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static int AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
-		EntityVisitaGuidata visita = new EntityVisitaGuidata();
-		visita.setIdVisita(idVisita);
-		visita.setNome(nome);
-		visita.setDescrizione(descrizione);
-		visita.setCitta(citta);
-		visita.setMaxPartecipanti(maxPartecipanti);
-		visita.setPrezzoBase(prezzoBase);
-		
-		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome);
-		visita.setGuida(guida);
-		
-		EntitySocieta societa = new EntitySocieta(societa_Nome);
-		visita.setSocieta(societa);
-		
-		EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta);
-		visita.setOfferta(offerta);
-		
-		int ret = visita.ScriviSuDB();
-		
-		if (ret != -1) {
-	        	System.out.println("Visita guidata inserita con successo. ID: " + idVisita);
-	    	} else {
-	        	System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
-	    	}
-		return ret;
-	}
+	public static int AggiungiVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) { 
 
+		EntityVisitaGuidata visita = new EntityVisitaGuidata(); 
+
+		visita.setIdVisita(idVisita); 
+		visita.setNome(nome); 
+		visita.setDescrizione(descrizione); 
+		visita.setCitta(citta); 
+		visita.setMaxPartecipanti(maxPartecipanti); 
+		visita.setPrezzoBase(prezzoBase); 
+		
+		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome); 
+
+		visita.setGuida(guida); 
+
+		if(!guida.getDisponibile()){ 
+
+			return 0; 
+		} 
+
+		else{ 
+
+			EntitySocieta societa = new EntitySocieta(societa_Nome); 
+
+			visita.setSocieta(societa);
+		
+			EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta); 
+
+			visita.setOfferta(offerta); 
+
+			int ret = visita.ScriviSuDB(); 
+
+			if (ret != -1) { 
+
+	        		System.out.println("Visita guidata inserita con successo. ID: " + idVisita); 
+				guida.ModificaNelDB(); 
+
+	    		} else { 
+
+	        		System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
+			}
+	    	} 
+
+		return ret; 
+
+	} 
+	
 	public static int aggiungiOpzione(int id, String desc, int dur, String mez, double magp, int idVisita) {
 		
 		EntityOpzione opzione=new EntityOpzione();
@@ -105,15 +124,10 @@ public class Agenzia {
 		visita.addPrenotazione(prenotazione);
 		prenotazione.setVisita(visita);
 		
-		double prezzoBase=visita.getPrezzoBase();
-		double sconto=controllaSconto(idv);
-		
 		EntityOpzione opzione=new EntityOpzione(ido);
 		prenotazione.setOpzione(opzione);
 		
-		double maggiorazione=opzione.getMaggiorazionePrezzo();
-		double prezzoTotale=prezzoBase-(prezzoBase*sconto)/100+maggiorazione;
-		prenotazione.setPrezzoTotale(prezzoTotale);
+		prenotazione.calcolaPrezzoTotale();
 		
 		int ret=prenotazione.ScriviSuDB();
 		return ret;
@@ -136,30 +150,48 @@ public class Agenzia {
 
 	// Funione di MOdifica di una visita, l'utente prima dell'inserimento dei dati deve ricevere una stampa delle visite, società, guide, 
 	public static void ModificaVisitaGuidata(int idVisita, String nome, String descrizione, String citta, int maxPartecipanti, double prezzoBase, String societa_Nome, int idOfferta, String guidaTuristica_Cognome) {
-		EntityVisitaGuidata visita = new EntityVisitaGuidata();
-		visita.setIdVisita(idVisita);
-		visita.setNome(nome);
-		visita.setDescrizione(descrizione);
-		visita.setCitta(citta);
-		visita.setMaxPartecipanti(maxPartecipanti);
-		visita.setPrezzoBase(prezzoBase);
+		EntityVisitaGuidata visita = new EntityVisitaGuidata(); 
+
+		visita.setIdVisita(idVisita); 
+		visita.setNome(nome); 
+		visita.setDescrizione(descrizione); 
+		visita.setCitta(citta); 
+		visita.setMaxPartecipanti(maxPartecipanti); 
+		visita.setPrezzoBase(prezzoBase); 
 		
-		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome);
-		visita.setGuida(guida);
+		EntityGuidaTuristica guida = new EntityGuidaTuristica(guidaTuristica_Cognome); 
+
+		visita.setGuida(guida); 
+
+		if(!guida.getDisponibile()){ 
+
+			return 0; 
+		} 
+
+		else{ 
+
+			EntitySocieta societa = new EntitySocieta(societa_Nome); 
+
+			visita.setSocieta(societa);
 		
-		EntitySocieta societa = new EntitySocieta(societa_Nome);
-		visita.setSocieta(societa);
-		
-		EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta);
-		visita.setOfferta(offerta);
-		
-		int ret = visita.ModificaSuDB();
-		
-		if (ret != -1) {
-	        System.out.println("Visita guidata modificata con successo. ID: " + idVisita);
-	    } else {
-	        System.out.println("Si è verificato un errore durante la modifica della visita guidata.");
-	    }
+			EntityOffertaSpeciale offerta =  new EntityOffertaSpeciale(idOfferta); 
+
+			visita.setOfferta(offerta); 
+
+			int ret = visita.ModificaSuDB(); 
+
+			if (ret != -1) { 
+
+	        		System.out.println("Visita guidata inserita con successo. ID: " + idVisita); 
+				guida.ModificaNelDB(); 
+
+	    		} else { 
+
+	        		System.out.println("Si è verificato un errore durante l'inserimento della visita guidata.");
+			}
+	    	} 
+
+		return ret; 
 		
 	}
 	
@@ -191,19 +223,18 @@ public class Agenzia {
 			return 0;
 
 	}
+	
+	public int controllaOpzione(int idv, int ido){
 
-	public static double controllaSconto(int idv){
+		EntityOpzione opzione=new EntityOpzione(ido);
 
-		EntityVisitaGuidata visita=new EntityVisitaGuidata(idv);
+		if(idv==opzione.getVisita().getIdVisita())
+			return 1;
 
-		if(visita.getOfferta().getInizio().before(null) && visita.getOfferta().getFine().after(null)){
-			double sconto=visita.getOfferta().getPercentualeSconto();
-			return sconto;
-		}
-
-		return 0;
-
+		else
+			return 0;
 	}
+
 // Funzione per permettere la comunicazione con l'amministratore tramite il servizio mail
 	public static void InviaEmail( String oggetto, String testo) {
         // Configurazione delle proprietà per la sessione di posta
