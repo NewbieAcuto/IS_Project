@@ -112,7 +112,7 @@ public class DBGuidaTuristica {
 		
 		int ret = 0;
 		
-		String query = "INSERT INTO OPZIONI(Cognome, Nome, Eta, Sesso, Lingue, AnnoAbilitazione, Disponibile) VALUES ( \'"+this.cognome+"\',"+"\'"+this.nome+"\','"+this.eta+"\','"+this.lingue+"\','"+this.annoAbilitazione+"\','"+this.disponibile+"');";
+		String query = "INSERT INTO GUIDETURISTICHE(Cognome, Nome, Eta, Sesso, Lingue, AnnoAbilitazione, Disponibile) VALUES ( \'"+this.cognome+"\',"+"\'"+this.nome+"\','"+this.eta+"\','"+this.lingue+"\','"+this.annoAbilitazione+"\','"+this.disponibile+"');";
 		// System.out.println(query);
 		try {
 			ret = DBConnectionManager.updateQuery(query);
