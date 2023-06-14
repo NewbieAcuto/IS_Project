@@ -46,17 +46,6 @@ public class EntityOffertaSpeciale {
 		
 	}
 	
-	public EntityOffertaSpeciale(int idOfferta, double percentualeSconto, Date inizio, Date fine,
-			ArrayList<EntityVisitaGuidata> visite) {
-		super();
-		this.idOfferta = idOfferta;
-		this.percentualeSconto = percentualeSconto;
-		this.inizio = inizio;
-		this.fine = fine;
-		this.visite = visite;
-		
-	}
-	
 	public int ScriviSuDB() {
 		
 		DBOffertaSpeciale offerta=new DBOffertaSpeciale();
