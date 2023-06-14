@@ -74,7 +74,7 @@ public class DBOpzione {
 		public void caricaVisitaOpzioneDaDB() {
 			
 			
-			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.visita.getIdVisita()+"')" );
+			String query = new String("SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.visita.getIdVisita()+"';" );
 			//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 			try {
@@ -110,7 +110,7 @@ public class DBOpzione {
 		public void caricaPrenotazioniOpzioneDaDB() {
 			
 			
-			String query = new String("SELECT * FROM PRENOTAZIONI WHERE Opzione_IdOpzione='"+this.idOpzione+"')" );
+			String query = new String("SELECT * FROM PRENOTAZIONI WHERE Opzione_IdOpzione='"+this.idOpzione+"';" );
 			//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 			try {
@@ -147,7 +147,7 @@ public class DBOpzione {
 				
 				int ret = 0;
 				
-				String query = "INSERT INTO OPZIONI(IdOpzione, Descrizione, Durata, Mezzo, MaggiorazionePrezzo, VisitaGuidata_IdVisita) VALUES ( \'"+this.idOpzione+"\',"+"\'"+this.descrizione+"\','"+this.durata+"\','"+this.mezzo+"\','"+this.maggiorazionePrezzo+"\','"+this.visita.getIdVisita()+"')";
+				String query = "INSERT INTO OPZIONI(IdOpzione, Descrizione, Durata, Mezzo, MaggiorazionePrezzo, VisitaGuidata_IdVisita) VALUES ( \'"+this.idOpzione+"\',"+"\'"+this.descrizione+"\','"+this.durata+"\','"+this.mezzo+"\','"+this.maggiorazionePrezzo+"\','"+this.visita.getIdVisita()+"');";
 				// System.out.println(query);
 				try {
 					ret = DBConnectionManager.updateQuery(query);
@@ -166,7 +166,7 @@ public class DBOpzione {
 			// Funzione per eliminare un'istanza dal database
 		    public int EliminaDalDB() {
 		    	int ret = 0;
-		        String query = new String("DELETE FROM OPZIONI WHERE IdOpzione ='"+this.idOpzione+"'");
+		        String query = new String("DELETE FROM OPZIONI WHERE IdOpzione ='"+this.idOpzione+"';");
 		        
 		        try{
 		        	
