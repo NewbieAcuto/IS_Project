@@ -107,6 +107,12 @@ public class EntityGuidaTuristica {
 		}
 		return ret;
 	}
+	
+	public void ModificaNelDB(){
+		
+		DBGuidaTuristica guida=new DBGuidaTuristica(this.cognome);
+		guida.modificaDisponibilita();
+	}
 
 	public String getCognome() {
 		return cognome;
