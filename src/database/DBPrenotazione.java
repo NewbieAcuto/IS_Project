@@ -23,8 +23,8 @@ public class DBPrenotazione {
 
 	
 	public DBPrenotazione(DBVisitaGuidata visita, DBUtenteRegistrato emailUtente) {
-		this.visita = new DBVisitaGuidata(visita);
-		this.utente = new DBUtenteRegistrato(emailUtente);
+		this.visita = visita;
+		this.utente = emailUtente;
 		caricaDaDB();
 	}
 	
