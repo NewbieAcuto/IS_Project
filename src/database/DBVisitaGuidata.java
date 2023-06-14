@@ -22,20 +22,14 @@ public class DBVisitaGuidata {
 	
 	public DBVisitaGuidata() {
 		super();
-		this.offerta = new DBOffertaSpeciale();
 		this.prenotazioni = new ArrayList<DBPrenotazione>();
-		this.societa = new DBSocieta();
-		this.guida = new DBGuidaTuristica();
 		
 	}
 	
 	
 	public DBVisitaGuidata(int idVisita) {
 		this.idVisita = idVisita;
-		this.offerta = new DBOffertaSpeciale();
 		this.prenotazioni = new ArrayList<DBPrenotazione>();
-		this.societa = new DBSocieta();
-		this.guida = new DBGuidaTuristica();
 		
 		caricaDaDB();
 	}
@@ -78,7 +72,7 @@ public class DBVisitaGuidata {
 
 	public void caricaDaDB() {
 		
-		String query = "SELECT * FROM VISITEGUIDATA WHERE IdVisita='"+this.idVisita+"';";	
+		String query = "SELECT * FROM VISITEGUIDATE WHERE IdVisita='"+this.idVisita+"';";	
 		try {
 			
 			java.sql.ResultSet rs = DBConnectionManager.selectQuery(query);
@@ -100,9 +94,9 @@ public class DBVisitaGuidata {
 	
 	
 	public void caricaOffertaVisitaDaDB() {
+
 		
-		
-		String query = new String("SELECT * FROM OFFERTE WHERE IdOfferta='"+this.offerta.getIdOfferta()+"')" );
+		String query = new String("SELECT * FROM OFFERTESPECIALI WHERE IdOfferta='(SELECT Offerta FROM VISITEGUIDATE WHERE IdVisita = '"+this.idVisita+"')';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -132,7 +126,7 @@ public class DBVisitaGuidata {
 	public void caricaGuidaVisitaDaDB() {
 		
 		
-		String query = new String("SELECT * FROM GUIDETURISTICHE WHERE Cognome='"+this.guida.getCognome()+"')" );
+		String query = new String("SELECT * FROM GUIDETURISTICHE WHERE Cognome='(SELECT GuideTuristiche_Cognome FROM VISITEGUIDATE WHERE IdVisita = '"+this.IdVisita+"')';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -167,7 +161,7 @@ public class DBVisitaGuidata {
 public void caricaSocietaVisitaDaDB() {
 		
 		
-		String query = new String("SELECT * FROM SOCIETA WHERE Nome='"+this.societa.getNome()+"')" );
+		String query = new String("SELECT * FROM SOCIETA WHERE Nome='(SELECT Societa_Nome FROM VISITEGUIDATE WHERE IdVisita = '"+this.idVisita+"')';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -199,7 +193,7 @@ public void caricaSocietaVisitaDaDB() {
 public void caricaPrenotazioniVisitaDaDB() {
 	
 	
-	String query = new String("SELECT * FROM PRENOTAZIONI WHERE Visita='"+this.idVisita+"')" );
+	String query = new String("SELECT * FROM PRENOTAZIONI WHERE Visita='"+this.idVisita+"';" );
 	//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 	
 	try {
@@ -234,7 +228,7 @@ public void caricaPrenotazioniVisitaDaDB() {
 		public void caricaOpzioniVisitaDaDB() {
 			
 			
-			String query = new String("SELECT * FROM OPZIONI WHERE VisiteGuida_IdVisita='"+this.idVisita+"')" );
+			String query = new String("SELECT * FROM OPZIONI WHERE VisiteGuida_IdVisita='"+this.idVisita+"';" );
 			//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 			
 			try {
@@ -268,7 +262,7 @@ public void caricaPrenotazioniVisitaDaDB() {
 			
 			int ret = 0;
 			
-			String query = new String("INSERT INTO VISITEGUIDATE(IdVisita, Nome, Descrizione, Citta, MaxPartecipanti, PrezzoBase, Societa_Nome, GuideTuristiche_Cognome, Offerta) VALUES ( \'"+this.idVisita+"\',"+"\'"+this.nome+"\','"+this.descrizione+"\','"+this.citta+"\','"+this.maxPartecipanti+"\','"+this.prezzoBase+"\','"+this.societa.getNome()+"\','"+this.guida.getCognome()+"\','"+this.offerta.getIdOfferta()+"')");  
+			String query = new String("INSERT INTO VISITEGUIDATE(IdVisita, Nome, Descrizione, Citta, MaxPartecipanti, PrezzoBase, Societa_Nome, GuideTuristiche_Cognome, Offerta) VALUES ( \'"+this.idVisita+"\',"+"\'"+this.nome+"\','"+this.descrizione+"\','"+this.citta+"\','"+this.maxPartecipanti+"\','"+this.prezzoBase+"\','"+this.societa.getNome()+"\','"+this.guida.getCognome()+"\','"+this.offerta.getIdOfferta()+"');");  
 			// System.out.println(query);
 			try {
 				ret = DBConnectionManager.updateQuery(query);
