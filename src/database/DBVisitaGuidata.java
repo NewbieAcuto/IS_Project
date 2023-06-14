@@ -96,7 +96,7 @@ public class DBVisitaGuidata {
 	public void caricaOffertaVisitaDaDB() {
 
 		
-		String query = new String("SELECT * FROM OFFERTESPECIALI WHERE IdOfferta='(SELECT Offerta FROM VISITEGUIDATE WHERE IdVisita = '"+this.idVisita+"')';" );
+		String query = new String("SELECT * FROM OFFERTESPECIALI OS LEFT JOIN VISITEGUIDATE VG ON OS.IdOfferta = VG.Offerta WHERE IdVisita = '"+this.idVisita+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -126,7 +126,7 @@ public class DBVisitaGuidata {
 	public void caricaGuidaVisitaDaDB() {
 		
 		
-		String query = new String("SELECT * FROM GUIDETURISTICHE WHERE Cognome='(SELECT GuideTuristiche_Cognome FROM VISITEGUIDATE WHERE IdVisita = '"+this.IdVisita+"')';" );
+		String query = new String("SELECT * FROM GUIDETURISTICHE LEFT JOIN VISITEGUIDATE ON Cognome = GuideTuristiche_Cognome WHERE IdVisita = '"+this.IdVisita+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
@@ -161,7 +161,7 @@ public class DBVisitaGuidata {
 public void caricaSocietaVisitaDaDB() {
 		
 		
-		String query = new String("SELECT * FROM SOCIETA WHERE Nome='(SELECT Societa_Nome FROM VISITEGUIDATE WHERE IdVisita = '"+this.idVisita+"')';" );
+		String query = new String("SELECT * FROM SOCIETA LFET JOIN VISITEGUIDATE ON Nome = Societa_Nome WHERE IdVisita = '"+this.idVisita+"';" );
 		//System.out.println(query); //stampo query per controllo in fase di DEBUG, poi posso commentare
 		
 		try {
