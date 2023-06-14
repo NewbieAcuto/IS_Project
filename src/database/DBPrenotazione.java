@@ -18,16 +18,13 @@ public class DBPrenotazione {
 	
 	public DBPrenotazione() {
 		super();
-		this.visita = new DBVisitaGuidata();
-		this.utente = new DBUtenteRegistrato();
-		this.opzione = new DBOpzione();
+		
 	}
+
 	
 	public DBPrenotazione(DBVisitaGuidata visita, DBUtenteRegistrato emailUtente) {
-		this.visita = new DBVisitaGuidata();
-		this.utente = new DBUtenteRegistrato();
-		this.opzione = new DBOpzione();
-		
+		this.visita = new DBVisitaGuidata(visita);
+		this.utente = new DBUtenteRegistrato(emailUtente);
 		caricaDaDB();
 	}
 	
